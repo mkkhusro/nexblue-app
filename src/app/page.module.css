@@ -44,14 +44,36 @@
 
 .hero { min-height: 93vh; position: relative; isolation: isolate; background: linear-gradient(90deg, rgba(7, 15, 18, .9) 0%, rgba(7, 15, 18, .56) 47%, rgba(7, 15, 18, .2) 100%), linear-gradient(0deg, rgba(7, 15, 18, .72), transparent 44%), var(--hero-image) center / cover; transition: background-image .8s ease-in-out; }
 .hero::after { content: ""; position: absolute; z-index: -1; inset: 0; background: radial-gradient(circle at 72% 39%, rgba(91, 192, 230, .18), transparent 23%); mix-blend-mode: screen; }
-.nav { display: flex; align-items: center; justify-content: space-between; width: min(1320px, calc(100% - 112px)); margin: auto; padding: 32px 0; border-bottom: 1px solid var(--line); }
-.brand { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-space-grotesk), sans-serif; font-size: 16px; font-weight: 700; letter-spacing: .08em; }
-.brand > span:last-child > span { color: var(--blue); }
-.brandMark { display: grid; width: 30px; height: 30px; place-items: center; color: var(--ink); background: var(--orange); clip-path: polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0 50%); font-family: var(--font-space-grotesk), sans-serif; font-size: 14px; }
-.navLinks { display: flex; gap: 42px; margin-left: auto; margin-right: 54px; }
-.navLinks a, .navCta { color: rgba(241, 241, 234, .7); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; transition: color .2s ease; }
-.navLinks a:hover, .navCta:hover, .textLink:hover, .industryMeta a:hover { color: var(--blue); }
-.navCta { color: var(--paper); }.navCta span, .textLink span, .industryMeta a span { color: var(--orange); font-size: 16px; margin-left: 8px; }
+.nav { position: relative; z-index: 5; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; row-gap: 16px; width: min(1480px, calc(100% - 72px)); margin: auto; padding: 24px 0 20px; border-bottom: 1px solid var(--line); }
+.brand { display: inline-flex; width: max-content; flex-direction: column; align-items: flex-start; gap: 4px; color: #fff; font-family: var(--font-space-grotesk), sans-serif; font-size: 32px; font-weight: 700; line-height: .9; }
+.brandMain { display: inline-flex; width: max-content; flex-direction: column; align-items: flex-start; gap: 2px; }
+.brandWord { display: inline-flex; width: max-content; align-items: baseline; justify-content: flex-start; white-space: nowrap; }
+.brandBlue { color: #2475f4; }
+.brandVariants { display: flex; width: 100%; min-width: 0; align-items: center; justify-content: space-between; gap: 4px; color: rgba(255, 255, 255, .84); font-size: 7px; font-weight: 700; line-height: 1; white-space: nowrap; }
+.brandVariants > span { min-width: 0; }
+.brandVariants b { font-style: italic; font-weight: 700; }
+.brandGreen { color: #83c83f; }
+.brandAccent { display: block; width: 100%; height: 2px; background: linear-gradient(90deg, #2475f4 0 68%, #83c83f 68% 100%); }
+.navMenu { display: contents; }
+.navTop { order: 0; display: flex; min-height: 32px; align-items: center; justify-content: flex-end; gap: 28px; margin-left: auto; }
+.navUtility { display: flex; height: 32px; align-items: center; gap: 24px; }
+.navLinks { order: 1; display: flex; flex: 1 0 100%; align-items: center; justify-content: space-between; gap: clamp(10px, 1.1vw, 16px); min-width: 0; margin: 0; padding-bottom: 8px; overflow-x: auto; scrollbar-color: rgba(91, 192, 230, .58) rgba(241, 241, 234, .08); scrollbar-width: thin; white-space: nowrap; }
+.navLinks::-webkit-scrollbar { height: 5px; }
+.navLinks::-webkit-scrollbar-track { border-radius: 999px; background: rgba(241, 241, 234, .08); }
+.navLinks::-webkit-scrollbar-thumb { border: 1px solid rgba(7, 15, 18, .7); border-radius: 999px; background: rgba(91, 192, 230, .58); }
+.navLinks:hover::-webkit-scrollbar-thumb { background: var(--blue); }
+.navUtility a, .navLinks a, .navLinks button, .navCta { color: rgba(241, 241, 234, .7); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; transition: color .2s ease; }
+.navUtility a, .navCta { display: inline-flex; min-height: 32px; align-items: center; line-height: 1; }
+.navLinks a, .navLinks button { flex: 0 0 auto; font-size: clamp(8px, .72vw, 10px); letter-spacing: .06em; }
+.navLinks button { display: inline-flex; align-items: center; gap: 6px; padding: 0; border: 0; background: transparent; cursor: pointer; white-space: nowrap; }
+.mobileSubmenuIndicator { display: none; }
+.navUtility a:hover, .navLinks a:hover, .navLinks button:hover, .navCta:hover, .textLink:hover, .industryMeta a:hover { color: var(--blue); }
+.automotiveItem { flex: 0 0 auto; }
+.verticalSubmenu { position: absolute; top: 100%; left: 0; display: grid; width: min(560px, calc(100vw - 72px)); grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; padding: 12px 18px; border: 1px solid var(--line); background: rgba(24, 32, 36, .98); box-shadow: 0 18px 36px rgba(0, 0, 0, .24); }
+.verticalSubmenu a { min-width: 0; padding: 9px 4px; color: rgba(241, 241, 234, .78); font-size: 11px; line-height: 1.45; transition: color .2s ease; }
+.verticalSubmenu a:hover { color: var(--blue); }
+.mobileVerticalSubmenu { display: none; }
+.navCta { color: var(--paper); }.navCta span { line-height: 1; }.navCta span, .textLink span, .industryMeta a span { color: var(--orange); font-size: 16px; margin-left: 8px; }
 .menuButton { display: none; }
 .heroContent { width: min(1320px, calc(100% - 112px)); margin: auto; padding-top: clamp(100px, 17vh, 210px); }
 .eyebrow, .sectionLabel, .visualTag { color: var(--blue); font-family: var(--font-space-grotesk), sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
@@ -63,6 +85,7 @@
 .heroContent h1 span, .heroContent h1 em { display: inline-block; animation: heroRise .75s both; }
 .heroContent h1 span:first-child { animation-delay: .22s; }.heroContent h1 em { animation-delay: .38s; }.heroContent h1 span:last-child { animation-delay: .54s; }
 .heroContent .heroBottom { animation: heroRise .75s .72s both; }
+.automotiveSlide h1 { max-width: 1220px; font-size: 78px; line-height: .96; }
 @keyframes heroRise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 .circleButton { display: grid; width: 50px; height: 50px; place-items: center; border: 1px solid rgba(241,241,234,.5); border-radius: 50%; color: var(--paper); font-size: 21px; transition: background .2s, color .2s; }.circleButton:hover { background: var(--paper); color: var(--ink); }
 .heroControls { position: absolute; right: max(56px, calc((100% - 1320px) / 2)); bottom: 46px; display: flex; align-items: center; gap: 20px; }.heroControls > button { width: 34px; height: 34px; padding: 0; border: 1px solid rgba(241,241,234,.3); border-radius: 50%; background: transparent; color: var(--paper); font-size: 17px; cursor: pointer; transition: border-color .2s, color .2s; }.heroControls > button:hover { border-color: var(--orange); color: var(--orange); }.slideDots { display: flex; gap: 9px; }.slideDots button { width: 24px; height: 20px; padding: 9px 0; border: 0; background: transparent; cursor: pointer; }.slideDots button span { display: block; width: 100%; height: 2px; background: rgba(241,241,234,.35); transition: background .3s; }.slideDots button.activeDot span { background: var(--orange); }
@@ -73,6 +96,7 @@
 .footer { padding: 100px max(56px, calc((100% - 1320px) / 2)) 28px; background: #0c1012; }.footerTop { display: flex; justify-content: space-between; min-height: 260px; }.footerTop .brand { align-self: start; }.footerTop p { margin-top: 30px; color: var(--muted); font-size: 13px; line-height: 1.7; }.footerAction { align-self: center; display: flex; flex-direction: column; gap: 16px; }.footerAction span { color: var(--muted); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }.footerAction a { font-family: var(--font-space-grotesk), sans-serif; font-size: clamp(25px, 3vw, 44px); }.footerAction b { color: var(--orange); font-weight: 400; }.footerBottom { display: flex; justify-content: space-between; padding-top: 24px; border-top: 1px solid var(--line); color: #68716f; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }.footerBottom div { display: flex; gap: 24px; }.footerBottom a:hover { color: var(--paper); }
 
 @media (max-width: 800px) {
+  .automotiveSlide h1 { font-size: 34px; line-height: 1; }
   .nav, .heroContent, .introSection, .industrySection { width: calc(100% - 44px); }.hero { min-height: 760px; background-position: 64% center; }.nav { padding: 22px 0; }.navLinks { position: absolute; z-index: 2; top: 75px; right: 22px; left: 22px; display: none; flex-direction: column; gap: 0; margin: 0; padding: 12px 20px; background: #182024; border: 1px solid var(--line); }.navLinksOpen { display: flex; }.navLinks a { padding: 16px 0; border-bottom: 1px solid var(--line); }.navLinks a:last-child { border: 0; }.navCta { display: none; }.menuButton { display: flex; flex-direction: column; gap: 5px; padding: 8px; background: none; border: 0; }.menuButton span { width: 23px; height: 1px; background: var(--paper); }.heroContent { padding-top: 155px; }.heroBottom { align-items: flex-start; gap: 28px; margin-top: 43px; }.heroBottom p { max-width: 255px; }.heroControls { right: 22px; bottom: 27px; }.heroAside { display: none; }.introSection { padding: 100px 0; }.introGrid { display: block; margin-top: 35px; }.introCopy { margin-top: 35px; }.stats { gap: 9%; margin-top: 75px; }.stats strong { font-size: 40px; }.stats small { font-size: 8px; }.industrySection { padding-bottom: 100px; }.sectionHeader { display: block; }.sectionHeader p { margin-top: 20px; }.industryGrid { grid-template-columns: 1fr; gap: 16px; }.industryImage { height: 210px; }.industryMeta { min-height: auto; padding-bottom: 28px; }.capabilitySection { display: flex; flex-direction: column; }.capabilityVisual { min-height: 430px; }.capabilityContent { padding: 80px 22px; }.capabilityContent h2 { margin-top: 30px; }.footer { padding: 70px 22px 25px; }.footerTop { display: block; min-height: 310px; }.footerAction { margin-top: 80px; }.footerBottom { display: block; line-height: 2; }.footerBottom div { margin: 12px 0; }
 }
 
@@ -196,4 +220,26 @@ a.secondary {
   background: color-mix(in srgb, currentColor 8%, transparent);
   padding: 0.1em 0.4em;
   border-radius: 6px;
+}
+
+@media (max-width: 800px) {
+  .nav { position: relative; flex-wrap: nowrap; row-gap: 0; }
+  .navMenu { position: absolute; z-index: 3; top: 75px; right: 0; left: 0; display: none; max-height: calc(100vh - 100px); overflow-y: auto; padding: 12px 20px; border: 1px solid var(--line); background: #182024; }
+  .navMenuOpen { display: block; }
+  .navTop { display: block; margin: 0; }
+  .navUtility { display: grid; height: auto; grid-template-columns: 1fr; gap: 0; }
+  .navUtility a, .navCta, .navLinks a, .navLinks button { display: flex; width: 100%; min-height: 48px; align-items: center; padding: 14px 0; line-height: 1.4; white-space: normal; overflow-wrap: anywhere; }
+  .navUtility a, .navCta { border-bottom: 1px solid var(--line); }
+  .navLinks { position: static; display: block; width: auto; margin: 0; padding: 0; overflow: visible; border: 0; background: transparent; white-space: normal; }
+  .navLinks a, .navLinks button { border-bottom: 1px solid var(--line); font-size: 11px; letter-spacing: .12em; }
+  .navLinks button { justify-content: space-between; }
+  .mobileSubmenuIndicator { display: inline; color: var(--orange); font-size: 16px; line-height: 1; }
+  .automotiveItem { width: 100%; }
+  .mobileVerticalSubmenuOpen { display: grid; grid-template-columns: 1fr; gap: 0; padding: 4px 0 8px 14px; }
+  .mobileVerticalSubmenu a { display: flex; min-height: 40px; align-items: center; padding: 10px 0; color: rgba(241, 241, 234, .72); font-size: 10px; line-height: 1.4; }
+  .verticalSubmenu { display: none; }
+  .navLinks a:last-child { border: 0; }
+  .verticalSubmenu { grid-template-columns: 1fr; gap: 0; padding: 0 0 0 14px; border: 0; border-bottom: 1px solid var(--line); background: transparent; }
+  .verticalSubmenu a { padding: 14px 0; }
+  .navCta { margin: 0; }
 }
