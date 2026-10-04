@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import styles from "./page.module.css";
+import { automotiveSolutions, getAutomotiveSolutionPath } from "./solutions/automotive/data";
 
 const industries = [
   { number: "01", title: "Aerospace", copy: "Critical cast and machined components for flight, space and the most demanding environments.", image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=85" },
@@ -53,18 +55,20 @@ const verticals = [
   "Mobility Technologies",
 ];
 
+const verticalPageLinks = {
+  "Automobile Care Products": "/automobile-care-products",
+  Lubricants: "/lubricants",
+  Petrochemicals: "/petrochemicals",
+  "Diesel Exhaust Fluid": "/diesel-exhaust-fluid",
+  "Industrial Fluids": "/industrial-fluids",
+  "EV Solutions": "/ev-solutions",
+  "Fleet Support Services": "/fleet-support-services",
+  "Mobility Technologies": "/mobility-technologies",
+};
+
 const verticalSubmenus = {
   "Automotive Solutions": [
-    "Passenger vehicle solutions",
-    "Commercial vehicle solutions",
-    "Heavy vehicle solutions",
-    "Automotive maintenance products",
-    "Workshop solutions",
-    "Automotive consumables",
-    "Vehicle operating fluids",
-    "Dealership and service-centre solutions",
-    "Institutional automotive supply",
-    "Automotive aftermarket distribution",
+    ...automotiveSolutions.map((solution) => solution.menuLabel),
   ],
   "Automobile Care Products": [
     "Exterior cleaning solutions",
@@ -116,7 +120,7 @@ const verticalSubmenus = {
     "Cutting fluids",
     "Specialty industrial fluids",
     "Heavy-equipment fluids",
-    "Maintenance fluids",
+    "Maintenance fluid",
   ],
   "EV Solutions": [
     "EV fluids",
@@ -144,7 +148,6 @@ const verticalSubmenus = {
     "Fleet procurement programs",
     "Bulk supply contracts",
     "Fleet operating analytics",
-    "Business Model",
   ],
   "Mobility Technologies": [
     "Fleet-management technology",
@@ -160,7 +163,6 @@ const verticalSubmenus = {
     "Charging ecosystem integrations",
     "Mobility data solutions",
     "B2B mobility platforms",
-    "Strategic Role",
   ],
 };
 
@@ -216,17 +218,17 @@ function Hero() {
     <div className={styles.navTop}>
       <div className={styles.navUtility}>
         <a href="#home" onClick={() => setMenuOpen(false)}>Home</a>
-        <a href="#company" onClick={() => setMenuOpen(false)}>About Us</a>
-        <a href="#company" onClick={() => setMenuOpen(false)}>Company</a>
+        <a href="/about-us" onClick={() => setMenuOpen(false)}>About Us</a>
+        <a href="/company" onClick={() => setMenuOpen(false)}>Company</a>
         <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
       </div>
       <a className={styles.navCta} href="#contact">Start a conversation <span>↗</span></a>
     </div>
     <div className={styles.navLinks}>
-      {verticals.map((vertical) => verticalSubmenus[vertical] ? <div key={vertical} className={styles.automotiveItem}><button className={styles.verticalTrigger} type="button" aria-expanded={openVertical === vertical} onPointerEnter={(event) => { if (event.pointerType === "mouse") showVerticalSubmenu(vertical, event.currentTarget); }} onClick={(event) => { if (window.matchMedia("(max-width: 800px)").matches) setOpenVertical((open) => open === vertical ? null : vertical); else showVerticalSubmenu(vertical, event.currentTarget); }}>{vertical}<span className={styles.mobileSubmenuIndicator} aria-hidden="true">{openVertical === vertical ? "−" : "+"}</span></button><div className={`${styles.mobileVerticalSubmenu} ${openVertical === vertical ? styles.mobileVerticalSubmenuOpen : ""}`}>{verticalSubmenus[vertical].map((submenu) => <a key={submenu} href="#industries" onClick={() => { setOpenVertical(null); setMenuOpen(false); }}>{submenu}</a>)}</div></div> : <a key={vertical} href="#industries" onClick={() => setMenuOpen(false)}>{vertical}</a>)}
+      {verticals.map((vertical) => verticalSubmenus[vertical] ? <div key={vertical} className={styles.automotiveItem}><button className={styles.verticalTrigger} type="button" aria-expanded={openVertical === vertical} onPointerEnter={(event) => { if (event.pointerType === "mouse") showVerticalSubmenu(vertical, event.currentTarget); }} onClick={(event) => { if (window.matchMedia("(max-width: 800px)").matches) setOpenVertical((open) => open === vertical ? null : vertical); else showVerticalSubmenu(vertical, event.currentTarget); }}>{vertical}<span className={styles.mobileSubmenuIndicator} aria-hidden="true">{openVertical === vertical ? "−" : "+"}</span></button><div className={`${styles.mobileVerticalSubmenu} ${openVertical === vertical ? styles.mobileVerticalSubmenuOpen : ""}`}>{verticalSubmenus[vertical].map((submenu) => <Link key={submenu} href={vertical === "Automotive Solutions" ? getAutomotiveSolutionPath(submenu) : verticalPageLinks[vertical] || "#industries"} onClick={() => { setOpenVertical(null); setMenuOpen(false); }}>{submenu}</Link>)}</div></div> : <a key={vertical} href="#industries" onClick={() => setMenuOpen(false)}>{vertical}</a>)}
     </div>
   </div>
-  {openVertical && <div className={styles.verticalSubmenu} style={{ left: `${submenuLeft}px` }} aria-label={`${openVertical} submenu`}>{verticalSubmenus[openVertical].map((submenu) => <a key={submenu} href="#industries" onClick={() => { setOpenVertical(null); setMenuOpen(false); }}>{submenu}</a>)}</div>}
+  {openVertical && <div className={styles.verticalSubmenu} style={{ left: `${submenuLeft}px` }} aria-label={`${openVertical} submenu`}>{verticalSubmenus[openVertical].map((submenu) => <Link key={submenu} href={openVertical === "Automotive Solutions" ? getAutomotiveSolutionPath(submenu) : verticalPageLinks[openVertical] || "#industries"} onClick={() => { setOpenVertical(null); setMenuOpen(false); }}>{submenu}</Link>)}</div>}
 </nav><div className={`${styles.heroContent} ${slide.id === "precision" ? styles.automotiveSlide : ""}`} key={slide.id}><p className={styles.eyebrow}><span></span> {slide.eyebrow}</p><h1><span>{slide.title}</span><br /><em>{slide.emphasis}</em><br /><span>{slide.ending}</span></h1><div className={styles.heroBottom}><p>{slide.copy}</p><a href="#company" className={styles.circleButton} aria-label="Scroll to introduction">↓</a></div></div><div className={styles.heroControls}><button onClick={() => changeSlide(-1)} aria-label="Previous slide">←</button><div className={styles.slideDots}>{heroSlides.map((item, index) => <button key={item.id} className={index === activeSlide ? styles.activeDot : ""} onClick={() => setActiveSlide(index)} aria-label={`Show ${item.id} slide`}><span></span></button>)}</div><button onClick={() => changeSlide(1)} aria-label="Next slide">→</button></div><div className={styles.heroAside}><span>Scroll to explore</span><i></i></div></header>;
 }
 

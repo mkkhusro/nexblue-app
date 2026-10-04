@@ -1,0 +1,40 @@
+.solutionSection { padding: 96px 0 108px; background: #e7eeeb; color: #111619; }
+.solutionInner { width: min(1320px, calc(100% - 88px)); margin: 0 auto; }
+.solutionHeading { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; margin-bottom: 38px; }
+.solutionHeading h2 { max-width: 680px; font-family: var(--font-space-grotesk), sans-serif; font-size: clamp(34px, 4.2vw, 56px); font-weight: 400; letter-spacing: -.04em; line-height: 1.02; }
+.solutionGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.solutionCard { display: flex; min-width: 0; flex-direction: column; background: #f5f5ef; border-bottom: 3px solid #3b858f; }
+.solutionCard:nth-child(3n + 2) { border-bottom-color: #ef7042; }
+.solutionVisual { position: relative; aspect-ratio: 1.48; background-position: center; background-size: cover; }
+.solutionVisual span { position: absolute; top: 12px; left: 12px; display: grid; width: 32px; height: 32px; place-items: center; background: #f5f5ef; color: #111619; font-family: var(--font-space-grotesk), sans-serif; font-size: 10px; }
+.solutionContent { display: flex; flex: 1; flex-direction: column; padding: 18px 18px 16px; }
+.solutionType { color: #3b858f; font-size: 9px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+.solutionCard h3 { margin-top: 9px; font-family: var(--font-space-grotesk), sans-serif; font-size: 18px; font-weight: 500; line-height: 1.25; }
+.solutionContent > p:not(.solutionType) { margin-top: 9px; color: #53605e; font-size: 11px; line-height: 1.7; }
+.solutionContent a { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 16px; color: #111619; font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.solutionContent a b { color: #3b858f; font-size: 15px; font-weight: 400; }
+.electricSystem { padding: 84px 0; background: #10232b; }
+.electricInner { display: grid; width: min(1320px, calc(100% - 88px)); grid-template-columns: .5fr 1.2fr .3fr; align-items: start; gap: 42px; margin: 0 auto; }
+.electricCopy h2 { max-width: 720px; font-family: var(--font-space-grotesk), sans-serif; font-size: clamp(34px, 4.2vw, 56px); font-weight: 400; letter-spacing: -.04em; line-height: 1.02; }
+.electricCopy > p { max-width: 680px; margin-top: 20px; color: rgba(241, 241, 234, .72); font-size: 14px; line-height: 1.8; }
+.electricCopy .primaryButton { margin-top: 26px; }
+.systemMark { justify-self: end; color: rgba(91, 192, 230, .45); font-family: var(--font-space-grotesk), sans-serif; font-size: 24px; line-height: .95; text-align: right; }
+
+@media (max-width: 900px) {
+  .solutionInner, .electricInner { width: calc(100% - 64px); }
+  .solutionGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .electricInner { grid-template-columns: .4fr 1.6fr; }
+  .systemMark { display: none; }
+}
+
+@media (max-width: 640px) {
+  .solutionSection { padding: 72px 0; }
+  .solutionInner, .electricInner { width: calc(100% - 40px); }
+  .solutionHeading { display: block; margin-bottom: 28px; }
+  .solutionHeading h2 { margin-top: 18px; font-size: 38px; }
+  .solutionGrid { grid-template-columns: 1fr; gap: 14px; }
+  .solutionVisual { aspect-ratio: 1.65; }
+  .electricSystem { padding: 70px 0; }
+  .electricInner { grid-template-columns: 1fr; gap: 22px; }
+  .electricCopy h2 { font-size: 38px; }
+}

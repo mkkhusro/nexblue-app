@@ -1,0 +1,44 @@
+.laneSection { padding: 96px 0 108px; background: #172024; }
+.laneInner { width: min(1320px, calc(100% - 88px)); margin: 0 auto; }
+.laneHeading { display: flex; align-items: flex-end; justify-content: space-between; gap: 36px; margin-bottom: 40px; }
+.laneHeading h2 { max-width: 720px; font-family: var(--font-space-grotesk), sans-serif; font-size: clamp(34px, 4.2vw, 56px); font-weight: 400; letter-spacing: -.04em; line-height: 1.02; }
+.laneGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.lane { min-width: 0; background: #0c1012; }
+.laneImage { position: relative; display: flex; min-height: 220px; flex-direction: column; justify-content: space-between; padding: 18px; background-position: center; background-size: cover; }
+.laneImage > span { align-self: flex-start; padding: 7px 9px; background: rgba(12, 16, 18, .76); color: #5bc0e6; font-size: 8px; font-weight: 700; letter-spacing: .12em; }
+.laneImage h3 { font-family: var(--font-space-grotesk), sans-serif; font-size: 24px; font-weight: 500; }
+.laneServices { padding: 0 18px; }
+.laneServices a { display: grid; min-height: 56px; grid-template-columns: 26px minmax(0, 1fr) 16px; align-items: center; gap: 10px; border-top: 1px solid rgba(241, 241, 234, .15); }
+.laneServices a > span { color: #ef7042; font-family: var(--font-space-grotesk), sans-serif; font-size: 9px; }
+.laneServices b { color: rgba(241, 241, 234, .88); font-size: 11px; font-weight: 500; line-height: 1.4; }
+.laneServices i { color: #5bc0e6; font-size: 13px; font-style: normal; }
+.laneServices a:hover b { color: #5bc0e6; }
+.modelSection { padding: 96px 0; background: #e5eae4; color: #111619; }
+.modelInner { display: grid; width: min(1320px, calc(100% - 88px)); grid-template-columns: .7fr 1.3fr; gap: 9%; margin: 0 auto; }
+.modelIntro .sectionIndex { color: #3b858f; }
+.modelIntro h2 { margin-top: 22px; font-family: var(--font-space-grotesk), sans-serif; font-size: clamp(34px, 4.2vw, 56px); font-weight: 400; letter-spacing: -.04em; line-height: 1.02; }
+.modelIntro > p:last-child { margin-top: 20px; color: #515d5c; font-size: 13px; line-height: 1.8; }
+.modelList { border-top: 1px solid rgba(17, 22, 25, .2); }
+.modelList > div { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 18px; padding: 20px 0; border-bottom: 1px solid rgba(17, 22, 25, .2); }
+.modelList > div > span { padding-top: 3px; color: #3b858f; font-family: var(--font-space-grotesk), sans-serif; font-size: 10px; }
+.modelList h3 { font-family: var(--font-space-grotesk), sans-serif; font-size: 17px; font-weight: 500; }
+.modelList p { margin-top: 6px; color: #515d5c; font-size: 11px; line-height: 1.7; }
+
+@media (max-width: 900px) {
+  .laneInner, .modelInner { width: calc(100% - 64px); }
+  .laneGrid { grid-template-columns: 1fr; gap: 14px; }
+  .lane { display: grid; grid-template-columns: minmax(220px, .7fr) minmax(0, 1.3fr); }
+  .laneImage { min-height: 100%; }
+  .laneServices a:first-child { border-top: 0; }
+}
+
+@media (max-width: 640px) {
+  .laneSection, .modelSection { padding: 72px 0; }
+  .laneInner, .modelInner { width: calc(100% - 40px); }
+  .laneHeading { display: block; margin-bottom: 30px; }
+  .laneHeading h2 { margin-top: 18px; font-size: 38px; }
+  .lane { display: flex; flex-direction: column; }
+  .laneImage { min-height: 190px; }
+  .modelInner { grid-template-columns: 1fr; gap: 32px; }
+  .modelIntro h2 { font-size: 38px; }
+}
